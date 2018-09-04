@@ -7,6 +7,13 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './public'
-  }
+    contentBase: path.join(__dirname, "../public"),
+    publicPath: '/',
+    host: '127.0.0.1',
+    port: '8888',
+    overlay: true
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 });

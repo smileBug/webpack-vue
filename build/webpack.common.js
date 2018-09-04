@@ -3,14 +3,25 @@ const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
+function resolve(dir) {
+  return path.join(__dirname, '..', dir);
+}
+
 module.exports = {
-  context: path.resolve(__dirname, '../'),
+  context: resolve(''),
   entry: {
     app: './src/index.js'
   },
+  resolve: { 
+    alias: { 
+      'vue': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+      '_': 'lodash'
+    } 
+  },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '../public')
+    path: resolve('public')
   },
   plugins: [
     new VueLoaderPlugin()
